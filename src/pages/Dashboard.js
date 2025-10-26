@@ -4,14 +4,27 @@ import "./Dashboard.css";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [tickets, setTickets] = useState([]);
+  const [stats, setStats] = useState({
+    total: 0,
+    open: 0,
+    in_progress: 0,
+    closed: 0,
+  });
 
   useEffect(() => {
-    // Just load user data - ProtectedRoute already checked the session!
-    const savedUser = JSON.parse(localStorage.getItem("ticketapp_user"));
-    if (savedUser) {
-      setUser(savedUser);
-    }
+    const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
+    setTickets(savedTickets);
+
+    // Calculate summary
+    const total = savedTickets.length;
+    const open = savedTickets.filter((t) => t.status === "open").length;
+    const in_progress = savedTickets.filter(
+      (t) => t.status === "in_progress"
+    ).length;
+    const closed = savedTickets.filter((t) => t.status === "closed").length;
+
+    setStats({ total, open, in_progress, closed });
   }, []);
 
   const handleLogout = () => {
@@ -21,38 +34,38 @@ function Dashboard() {
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1>🎟️ TicketApp Dashboard</h1>
-        <button className="logout-btn" onClick={handleLogout}>
+      <h1>🎟️ Ticket Dashboard</h1>
+
+      <div className="stats-grid">
+        <div className="card open">
+          <h3>Total Tickets</h3>
+          <p>{stats.total}</p>
+        </div>
+
+        <div className="card green">
+          <h3>Open</h3>
+          <p>{stats.open}</p>
+        </div>
+
+        <div className="card amber">
+          <h3>In Progress</h3>
+          <p>{stats.in_progress}</p>
+        </div>
+
+        <div className="card gray">
+          <h3>Closed</h3>
+          <p>{stats.closed}</p>
+        </div>
+      </div>
+
+      <div className="dashboard-actions">
+        <button onClick={() => navigate("/tickets")} className="btn">
+          Manage Tickets
+        </button>
+        <button onClick={handleLogout} className="btn logout">
           Logout
         </button>
-      </header>
-
-      <section className="dashboard-content">
-        {user ? (
-          <>
-            <h2>Welcome back, {user.name} 👋</h2>
-            <p>Email: {user.email}</p>
-          </>
-        ) : (
-          <p>Loading user info...</p>
-        )}
-
-        <div className="stats-grid">
-          <div className="stat-card">
-            <h3>Tickets Booked</h3>
-            <p>12</p>
-          </div>
-          <div className="stat-card">
-            <h3>Upcoming Events</h3>
-            <p>3</p>
-          </div>
-          <div className="stat-card">
-            <h3>Points Earned</h3>
-            <p>1,540</p>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
