@@ -16,7 +16,7 @@ function Dashboard() {
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     setTickets(savedTickets);
 
-    // Calculate summary
+    
     const total = savedTickets.length;
     const open = savedTickets.filter((t) => t.status === "open").length;
     const in_progress = savedTickets.filter(

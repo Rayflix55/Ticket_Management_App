@@ -22,7 +22,7 @@ function Signup() {
     setError("");
     setSuccess("");
 
-    // Basic validation
+    
     if (!form.name || !form.email || !form.password || !form.confirmPassword) {
       setError("All fields are required.");
       return;
@@ -38,7 +38,7 @@ function Signup() {
       return;
     }
 
-    // Check if user already exists
+    
     const existingUser = localStorage.getItem("ticketapp_user");
     if (existingUser) {
       try {
@@ -48,11 +48,11 @@ function Signup() {
           return;
         }
       } catch (err) {
-        // If corrupted, we'll overwrite it
+        
       }
     }
 
-    // Save the new user
+    
     const newUser = {
       name: form.name,
       email: form.email,

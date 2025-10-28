@@ -1,15 +1,15 @@
 import { Navigate } from "react-router-dom";
 
-const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
+const SESSION_TIMEOUT = 30 * 60 * 1000; 
 
 const ProtectedRoute = ({ children }) => {
-  console.log("🔒 ProtectedRoute: Starting check..."); // Debug
+  console.log("🔒 ProtectedRoute: Starting check..."); 
   
   let sessionData;
   
   try {
     const stored = localStorage.getItem("ticketapp_session");
-    console.log("📦 ProtectedRoute: Raw session from storage:", stored); // Debug
+    console.log("📦 ProtectedRoute: Raw session from storage:", stored); 
     
     if (!stored) {
       console.log("❌ ProtectedRoute: No session found, redirecting to login"); // Debug
@@ -18,9 +18,9 @@ const ProtectedRoute = ({ children }) => {
     }
     
     sessionData = JSON.parse(stored);
-    console.log("✅ ProtectedRoute: Parsed session data:", sessionData); // Debug
+    console.log("✅ ProtectedRoute: Parsed session data:", sessionData); 
   } catch (error) {
-    console.error("❌ ProtectedRoute: JSON parse error:", error); // Debug
+    console.error("❌ ProtectedRoute: JSON parse error:", error); 
     localStorage.removeItem("ticketapp_session");
     alert("Invalid session. Please log in again.");
     return <Navigate to="/auth/login" replace />;
@@ -33,7 +33,7 @@ const ProtectedRoute = ({ children }) => {
   console.log("  LoginTime:", loginTime);
   
   if (!token || !loginTime) {
-    console.log("❌ ProtectedRoute: Missing token or loginTime, redirecting"); // Debug
+    console.log("❌ ProtectedRoute: Missing token or loginTime, redirecting"); 
     localStorage.removeItem("ticketapp_session");
     alert("Invalid session. Please log in again.");
     return <Navigate to="/auth/login" replace />;
@@ -50,13 +50,13 @@ const ProtectedRoute = ({ children }) => {
   console.log("  Expired?", timeDiff > SESSION_TIMEOUT);
 
   if (timeDiff > SESSION_TIMEOUT) {
-    console.log("❌ ProtectedRoute: Session expired, redirecting"); // Debug
+    console.log("❌ ProtectedRoute: Session expired, redirecting"); 
     localStorage.removeItem("ticketapp_session");
     alert("Your session has expired. Please log in again.");
     return <Navigate to="/auth/login" replace />;
   }
 
-  console.log("✅ ProtectedRoute: All checks passed! Rendering children"); // Debug
+  console.log("✅ ProtectedRoute: All checks passed! Rendering children"); 
   return children;
 };
 

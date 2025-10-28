@@ -7,8 +7,8 @@ function Tickets() {
   const [tickets, setTickets] = useState([]);
   const [form, setForm] = useState({ title: "", description: "", status: "open" });
   const [editingIndex, setEditingIndex] = useState(null);
+  const [error, setError] = useState(""); 
 
-  // ✅ Load tickets from localStorage on mount
   useEffect(() => {
     const session = localStorage.getItem("ticketapp_session");
     if (!session) {
@@ -20,23 +20,25 @@ function Tickets() {
     }
   }, [navigate]);
 
-  // ✅ Save tickets to localStorage
+  
   const saveTickets = (updated) => {
     setTickets(updated);
     localStorage.setItem("tickets", JSON.stringify(updated));
   };
 
-  // ✅ Handle input change
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    setError(""); 
   };
 
-  // ✅ Add or update ticket
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!form.title.trim() || !form.description.trim()) {
-      alert("Please fill in all fields.");
+      setError("Please fill in all fields before submitting.");
       return;
     }
 
@@ -51,21 +53,23 @@ function Tickets() {
     }
 
     setForm({ title: "", description: "", status: "open" });
+    setError(""); 
   };
 
-  // ✅ Edit ticket
+  
   const handleEdit = (index) => {
     setEditingIndex(index);
     setForm(tickets[index]);
+    setError(""); 
   };
 
-  // ✅ Delete ticket
+  
   const handleDelete = (id) => {
     const filtered = tickets.filter((t) => t.id !== id);
     saveTickets(filtered);
   };
 
-  // ✅ Logout
+  
   const handleLogout = () => {
     localStorage.removeItem("ticketapp_session");
     navigate("/");
@@ -94,6 +98,10 @@ function Tickets() {
           <option value="in_progress">In Progress</option>
           <option value="closed">Closed</option>
         </select>
+
+        
+        {error && <p className="error-message">{error}</p>}
+
         <button type="submit" className="btn">
           {editingIndex !== null ? "Update Ticket" : "Add Ticket"}
         </button>

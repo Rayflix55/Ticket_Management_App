@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
-import "./Auth.css";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,22 +13,22 @@ function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
 const handleSubmit = (e) => {
   e.preventDefault();
-  setError(""); // Clear previous errors
+  setError(""); 
 
-  console.log("🔍 Form submitted with:", form); // Debug
+  console.log("🔍 Form submitted with:", form); 
 
   if (!form.email || !form.password) {
     setError("All fields are required.");
     return;
   }
 
-  // Get saved user with error handling
+  
   let savedUser;
   try {
     const storedUser = localStorage.getItem("ticketapp_user");
-    console.log("📦 Raw stored user:", storedUser); // Debug
+    console.log("📦 Raw stored user:", storedUser); 
     savedUser = JSON.parse(storedUser);
-    console.log("✅ Parsed user:", savedUser); // Debug
+    console.log("✅ Parsed user:", savedUser); 
   } catch (err) {
     console.error("❌ Parse error:", err);
     setError("Error loading user data. Please sign up again.");
@@ -48,7 +48,7 @@ const handleSubmit = (e) => {
     form.email === savedUser.email &&
     form.password === savedUser.password
   ) {
-    console.log("✅ Credentials match! Saving session..."); // Debug
+    console.log("✅ Credentials match! Saving session..."); 
     
     // Save session data
     const sessionData = {
@@ -59,66 +59,26 @@ const handleSubmit = (e) => {
     
     localStorage.setItem("ticketapp_session", JSON.stringify(sessionData));
     
-    console.log("💾 Session saved:", sessionData); // Debug
-    console.log("📦 Session in localStorage:", localStorage.getItem("ticketapp_session")); // Debug
+    console.log("💾 Session saved:", sessionData); 
+    console.log("📦 Session in localStorage:", localStorage.getItem("ticketapp_session")); 
 
     setLoading(true);
     setTimeout(() => {
-      console.log("🚀 Navigating to dashboard..."); // Debug
+      console.log("🚀 Navigating to dashboard..."); 
       navigate("/dashboard");
     }, 2000);
   } else {
-    console.log("❌ Credentials don't match!"); // Debug
+    console.log("❌ Credentials don't match!"); 
     setError("Invalid credentials. Try again.");
   }
 };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setError(""); // Clear previous errors
-
-  //   if (!form.email || !form.password) {
-  //     setError("All fields are required.");
-  //     return;
-  //   }
-
-  //   // Get saved user with error handling
-  //   let savedUser;
-  //   try {
-  //     savedUser = JSON.parse(localStorage.getItem("ticketapp_user"));
-  //   } catch (err) {
-  //     setError("Error loading user data. Please sign up again.");
-  //     return;
-  //   }
-
-  //   if (
-  //     savedUser &&
-  //     form.email === savedUser.email &&
-  //     form.password === savedUser.password
-  //   ) {
-  //     // Save session data
-  //     localStorage.setItem(
-  //       "ticketapp_session",
-  //       JSON.stringify({
-  //         token: savedUser.email,
-  //         loginTime: new Date().getTime(),
-  //         email: savedUser.email
-  //       })
-  //     );
-
-  //     setLoading(true);
-  //     setTimeout(() => {
-  //       navigate("/dashboard");
-  //     }, 2000);
-  //   } else {
-  //     setError("Invalid credentials. Try again.");
-  //   }
-  // };
+ 
 
   if (loading) return <Loader />;
 
   return (
     <div className="auth-container">
-      <h1>Login</h1>
+      <h1>Welcome Back</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="email"

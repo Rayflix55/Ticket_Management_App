@@ -140,3 +140,9 @@
   text-align: center;
   color: #999;
 }
+.error-message {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin: 6px 0;
+  text-align: center;
+}

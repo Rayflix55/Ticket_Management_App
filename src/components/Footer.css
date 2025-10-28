@@ -1,0 +1,23 @@
+.footer {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #eaeaea;
+  text-align: center;
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.footer p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.footer p:hover {
+  color: #00f5d4;
+  transition: color 0.3s ease;
+}
