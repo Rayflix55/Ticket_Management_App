@@ -13,7 +13,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="logo">🎟️ TicketPro</div>
+      <div className="logo">🎟️ TicketFlow</div>
       <div className="links">
         {session ? (
           <>

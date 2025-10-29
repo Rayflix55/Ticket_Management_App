@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom"; // ✅ Removed "BrowserRouter as Router"
+import { Routes, Route, useLocation } from "react-router-dom"; 
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -10,11 +10,17 @@ import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
+  const location = useLocation();
+
+  // ✅ Show Navbar & Footer only on Landing and Dashboard
+  const showLayout = ["/", "/dashboard"].includes(location.pathname);
+
   return (
     <>
-      <Navbar />
+      {showLayout && <Navbar />}
+
       <Routes>
-       <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<Signup />} />
 
@@ -36,10 +42,10 @@ function App() {
           }
         />
       </Routes>
-      <Footer />
+
+      {showLayout && <Footer />}
     </>
   );
 }
 
 export default App;
-

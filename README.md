@@ -1,71 +1,142 @@
-# Getting Started with Create React App
+# 🎟️ Ticket Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple **React-based ticket management system** that allows users to **sign up, log in, and manage support tickets** — all stored locally using browser `localStorage`. Built as part of the **HNG Frontend Internship (Stage 2)** task.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+✅ **User Authentication**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Sign up and log in using localStorage
+* Session-based access control
+* Auto session validation on reload
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+✅ **Ticket CRUD Operations**
 
-### `npm test`
+* Create, Read, Update, Delete tickets
+* Each ticket includes a title, description, and status
+* Real-time updates saved locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+✅ **Protected Dashboard**
 
-### `npm run build`
+* Only accessible after login
+* Redirects unauthorized users automatically
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+✅ **Responsive UI**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Works seamlessly on desktop and mobile
+* Styled with clean, modern CSS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+✅ **Session Management**
 
-### `npm run eject`
+* Tracks login time
+* Session expires after inactivity
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧩 Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+src/
+├── components/
+│   ├── Navbar.js
+│   ├── Footer.js
+│   └── ProtectedRoute.js
+│
+├── pages/
+│   ├── Landing.js
+│   ├── Login.js
+│   ├── Signup.js
+│   ├── Dashboard.js
+│   └── Tickets.js
+│
+├── App.js
+└── index.js
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## ⚙️ Installation & Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Clone the repository**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   git clone https://github.com/Rayflix55/Ticket_Management_App.git
+   cd Ticket_Management_App
+   ```
 
-### Code Splitting
+2. **Install dependencies**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm install
+   ```
 
-### Analyzing the Bundle Size
+3. **Start the app**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   npm start
+   ```
 
-### Making a Progressive Web App
+4. **Open in your browser**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```
+   http://localhost:3000
+   ```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🧠 How It Works
 
-### Deployment
+**Authentication Flow**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. User signs up → Data saved to localStorage
+2. User logs in → Session created (`ticketapp_session`)
+3. Protected routes check for valid session before rendering
+4. Logging out removes the session and redirects to login
 
-### `npm run build` fails to minify
+**Tickets Flow**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Ticket_Management_App
+* Users can add, edit, and delete tickets directly from the dashboard
+* All ticket data is saved in localStorage (`tickets`)
+* Status options: *Open*, *In Progress*, *Closed*
+
+---
+
+## 🧑‍💻 Tech Stack
+
+* **React.js** (Frontend)
+* **React Router DOM** (Routing)
+* **LocalStorage API** (Data Persistence)
+* **CSS3 / Flexbox** (Styling)
+
+---
+
+## 📸 Screenshots
+
+| Landing Page                          | Dashboard                                 | Tickets                               |
+| ------------------------------------- | ----------------------------------------- | ------------------------------------- |
+| ![Landing](./screenshots/landing.png) | ![Dashboard](./screenshots/dashboard.png) | ![Tickets](./screenshots/tickets.png) |
+
+*(Add your screenshots to a `/screenshots` folder to display them here.)*
+
+---
+
+## ✨ Future Improvements
+
+* Integrate with a backend (Node.js / Firebase)
+* Role-based user access
+* Ticket filters and search
+* Password encryption
+* Dark mode UI
+
+---
+
+## 🏁 Project Info
+
+**Author:** [Samuel Raymond (Rayflix)](https://github.com/Rayflix55)
+**Track:** HNG Frontend Internship — Stage 2
+**Live Demo:** [Ticket Management App](https://rayflix-ticket.vercel.app) *(add link when deployed)*
+**Repository:** [GitHub](https://github.com/Rayflix55/Ticket_Management_App)
+
+---

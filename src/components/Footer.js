@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <p>© 2025 TicketPro | Built for HNG13 Internship 🚀</p>
+      <p>© 2025 TicketFlow | Built for HNG13 Internship </p>
     </footer>
   );
 }

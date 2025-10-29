@@ -16,6 +16,8 @@
   position: sticky;
   top: 10px;
   z-index: 1000;
+  margin-bottom:-80px;
+
 }
 
 .logo {
@@ -76,13 +78,13 @@
 
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     padding: 16px 20px;
   }
 
   .links {
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     margin-top: 10px;
     gap: 10px;
